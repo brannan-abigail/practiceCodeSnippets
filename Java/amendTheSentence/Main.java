@@ -1,4 +1,4 @@
-import java.util.Scanner;
+import java.util.*;
 
 /**
 * The Main program (amendTheSentence) implements an application that
@@ -26,6 +26,8 @@ public class Main {
         
             if (isNumeric(line))
                 output = testCases(Integer.parseInt(line));
+            else
+                output = amendTheSentence(line);
             System.out.println(output);
         }
     }
@@ -37,6 +39,18 @@ public class Main {
    */
     public static String amendTheSentence(String input) {
         String output = "codesignam is awesome";
+        char[] inputCharArray = new char[input.length()];
+        
+        for (int i = 0; i < input.length(); i++) {
+            inputCharArray[i] = input.charAt(i);
+        }
+
+        for (int j = 0; j < input.length(); j++) {
+            if (Character.isUpperCase(input.charAt(j))) {
+                System.out.println("hi");
+            }
+        }
+
         return output;
     }
 
