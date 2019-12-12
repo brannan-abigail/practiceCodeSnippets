@@ -1,12 +1,16 @@
-import java.util.*;
+import java.util.Scanner;
 
 /**
 * The Main program (amendTheSentence) implements an application that
 * anwsers the codeSignal problem requiring the user to parse a given
 * string with CapitalLettersForNewWords. The output for this example 
-* should be "capital letters for new words".
+* should be "capital letters for new words". 
+* 
+* Soln relies on Java's string and character functions, especially 
+* appending strings. Some tricky type conversion too on lines 54-55
+*  between character and String types for the desired methods.
 *
-* @author  Abigail Brannan
+* @author  Abigail Brannan, 
 * @version 1.0
 * @since   2019-12-11 
 */
@@ -23,11 +27,8 @@ public class Main {
 		
 		while(scanner.hasNextLine()) {
 			String line = scanner.nextLine();
-        
-            if (isNumeric(line))
-                output = testCases(Integer.parseInt(line));
-            else
-                output = amendTheSentence(line);
+
+            output = amendTheSentence(line);
             System.out.println(output);
         }
     }
@@ -38,51 +39,26 @@ public class Main {
    * @return String output Sentence with words seperated by spaces and lowercase.
    */
     public static String amendTheSentence(String input) {
-        String output = "codesignam is awesome";
-        char[] inputCharArray = new char[input.length()];
+        String output = "";
         
-        for (int i = 0; i < input.length(); i++) {
-            inputCharArray[i] = input.charAt(i);
-        }
+        // if input is empty string, return empty string
+        if (input == "")
+            output = input;
+        else {
+            // make first letter lowercase and declare to output
+            output = input.substring(0, 1).toLowerCase();
 
-        for (int j = 0; j < input.length(); j++) {
-            if (Character.isUpperCase(input.charAt(j))) {
-                System.out.println("hi");
+            for (int i = 1; i < input.length(); i++) {
+                // if upperCase, add " " and lowerCase version of char to output
+                if (Character.isUpperCase(input.charAt(i))) {
+                    String temp = String.valueOf(input.charAt(i));
+                    output = output + " " + temp.toLowerCase();
+                } // if not upperCase, just add char to output
+                else
+                    output = output + input.charAt(i);
             }
         }
 
         return output;
-    }
-
-   /**
-   * This method provides the code for the test cases in codeSignal.
-   * @param int testCase Number of test case.
-   * @return String output amendTheSentence(String from test case).
-   */
-    public static String testCases(int testCase) {
-        String output = "";
-
-        switch (testCase) {
-            case 1:
-                System.out.println("Hit test Case 1");
-                output = amendTheSentence("CodesignamIsAwesome");
-                break;
-        }
-
-        return output;
-    }
-
-   /**
-   * This method tests whether the input string is numeric. 
-   * @author mykong
-   * @param final String str
-   * @return static boolean str.chars().allMatch(Character::isDigit)
-   */
-    public static boolean isNumeric(final String str) {
-        // null or empty
-        if (str == null || str.length() == 0) {
-            return false;
-        }
-        return str.chars().allMatch(Character::isDigit);
     }
 }
