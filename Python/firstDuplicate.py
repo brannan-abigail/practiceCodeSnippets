@@ -14,11 +14,11 @@ def firstDuplicate(a):
 
     # if an element is in the read list already, it's a duplicate
     for x in a:
-        if seen[x] != 0:
+        if seen[x-1] != 0:
             output = x
             return x
         else: 
-            seen[x] = 1
+            seen[x-1] = 1
         print(seen)
 
     return output
