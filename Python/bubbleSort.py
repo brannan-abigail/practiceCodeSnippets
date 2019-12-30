@@ -8,6 +8,7 @@ def bubbleSort(items):
         items[firstIndex] = items[secondIndex]
         items[secondIndex] = temp
 
+    #  length added below (only addition to given code)
     length = len(items)
 
     for i in range(length):
