@@ -1,3 +1,5 @@
+# Python soln to CodeSignal problem containsDuplicates 
+# based upon soln given by other member using sets
 def containsDuplicates(a):
     return len(set(a)) != len(a)
     
